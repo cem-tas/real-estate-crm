@@ -26,12 +26,12 @@
 </template>
 
 <style scoped>
-.login-container {
+/* .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
+  width: 100%;
+} */
 
 .login-card {
   border-radius: 5px;
