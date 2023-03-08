@@ -5,76 +5,68 @@ export const useAddProjectStore = defineStore({
   state: () => ({
     // id: new Date().toISOString(),
     projectName: '',
-    projectType: null,
     projectDoorNo: '',
-    projectFurnish: null,
-    projectElectricityNo: '',
-    projectWaterNo: '',
-    projectCurrency: null,
-    projectMaintananceFee: null,
-    projectDepositFee: null,
-    projectPrice: null,
-    projectLendPeriod: '',
-    projectContractStart: null,
-    projectContactEnd: null,
-    llordName: '',
-    llordPhone: '',
-    llEmail: '',
-    llPassport: '',
-    llBankNo: '',
+    furnitureStatus: '',
+    electricityNo: '',
+    waterNo: '',
+    rentPrice: null,
+    rentCurrency: 'TRY',
+    dues: null,
+    duesCurrency: 'TRY',
+    deposit: null,
+    depositCurrency: 'TRY',
+    rentalPeriod: '',
+    contractStart: '',
+    contractEnd: '',
+    landlordName: '',
+    landlordPhone: '',
+    landlordEmail: '',
+    landlordId: '',
+    bankAccount: '',
     documents: [],
-    tenant: {
-      ttName: '',
-      ttPhone: '',
-      ttEmail: '',
-      ttPassport: ''
-    },
-    key: null,
-    waterCard: null,
-    elevatorCard: null,
-    outdoorCard: null,
-    electricityBill: null,
-    waterBill: null,
-    maintananceBill: null
+    tenant: { tenantName: '', tenantPhone: '', tenantEmail: '', tenantId: '' },
+    keyStatus: '',
+    waterCard: '',
+    elevatorCard: '',
+    electricityDebt: null,
+    waterDebt: null
   }),
 
   getters: {
     ttLandlordName: (state) => {
-      return state.landlord.llordName
+      return state.elevatorCard
     }
   },
 
   actions: {
     async addProject() {
       const newProject = {
-        id: crypto.randomUUID(),
         projectName: this.projectName,
-        projectType: this.projectType,
         projectDoorNo: this.projectDoorNo,
-        projectFurnish: this.projectFurnish,
-        projectElectricityNo: this.projectElectricityNo,
-        projectWaterNo: this.projectWaterNo,
-        projectCurrency: this.projectCurrency,
-        projectMaintananceFee: this.projectMaintananceFee,
-        projectDepositFee: this.projectDepositFee,
-        projectPrice: this.projectPrice,
-        projectLendPeriod: this.projectLendPeriod,
-        projectContractStart: this.projectContractStart,
-        projectContactEnd: this.projectContactEnd,
-        llordName: this.llordName,
-        llordPhone: this.llordPhone,
-        llEmail: this.llEmail,
-        llPassport: this.llPassport,
-        llBankNo: this.llBankNo,
+        furnitureStatus: this.furnitureStatus,
+        electricityNo: this.electricityNo,
+        waterNo: this.waterNo,
+        rentPrice: this.rentPrice,
+        rentCurrency: this.rentCurrency,
+        dues: this.dues,
+        duesCurrency: this.duesCurrency,
+        deposit: this.deposit,
+        depositCurrency: this.depositCurrency,
+        rentalPeriod: this.rentalPeriod,
+        contractStart: this.contractStart,
+        contractEnd: this.contractEnd,
+        landlordName: this.landlordName,
+        landlordPhone: this.landlordPhone,
+        landlordEmail: this.landlordEmail,
+        landlordId: this.landlordId,
+        bankAccount: this.bankAccount,
         documents: this.documents,
-        tenant: this.tenant,
-        key: this.key,
+        tenant: { tenantName: this.tenant.tenantName, tenantPhone: this.tenant.tenantPhone, tenantEmail: this.tenant.tenantEmail, tenantId: this.tenant.tenantId },
+        keyStatus: this.keyStatus,
         waterCard: this.waterCard,
         elevatorCard: this.elevatorCard,
-        outdoorCard: this.outdoorCard,
-        electricityBill: this.electricityBill,
-        waterBill: this.waterBill,
-        maintananceBill: this.maintananceBill
+        electricityDebt: this.electricityDebt,
+        waterDebt: this.waterDebt
       }
       const response = await fetch(
         `https://crm-project-c11ac-default-rtdb.europe-west1.firebasedatabase.app/projects.json`,
@@ -88,7 +80,7 @@ export const useAddProjectStore = defineStore({
 
       if (!response.ok) {
         const error = new Error(
-          responseData.message || 'Failed to register student data! Try again.'
+          responseData.message || 'Failed to register new project data! Try again.'
         )
         throw error
       }

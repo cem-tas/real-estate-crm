@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="side-nav">
+    <div class="side-nav" v-if="userStore.isLoggedIn === true">
       <button class="nav-header" @click="store.toggleNavBody1">
         <h3>Projeler</h3>
         <i :class="['fa', store.isNavBodyOpen1 ? 'fa-caret-down' : 'fa-caret-right']"></i>
       </button>
       <div class="nav-body" :class="{ active: store.isNavBodyOpen1 }">
         <RouterLink class="nav-button" to="/">İncele</RouterLink>
-        <RouterLink class="nav-button" to="/">Ekle</RouterLink>
+        <RouterLink class="nav-button" to="/add-project">Ekle</RouterLink>
         <RouterLink class="nav-button" to="/">Düzenle</RouterLink>
       </div>
       <button class="nav-header" @click="store.toggleNavBody2">
@@ -23,19 +23,21 @@
 </template>
 
 <script setup>
+import { RouterView } from 'vue-router'
 import { useNavStore } from '@/stores/navbar.js'
 import { useUserStore } from '@/stores/user.js'
+import AddProject from '@/components/pages/AddProject.vue'
 
 const store = useNavStore()
 const userStore = useUserStore()
 </script>
 
-<style>
+<style scoped>
 .side-nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
+  width: 100%;
 }
 
 .nav-header {
