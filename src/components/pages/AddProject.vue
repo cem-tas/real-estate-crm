@@ -26,8 +26,8 @@
         <input type="text" id="waterNo" v-model="store.waterNo" required />
       </div>
       <div class="form-group">
-        <label for="rentAmount">Kira Fiyatı</label>
-        <input type="number" id="rentAmount" v-model="store.rentAmount" required />
+        <label for="rentPrice">Kira Fiyatı</label>
+        <input type="number" id="rentPrice" v-model="store.rentPrice" required />
       </div>
       <div class="form-group">
         <label for="rentCurrency">Kira Para Birimi</label>
@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
         <label for="depositAmount">Depozito</label>
-        <input type="number" id="depositAmount" v-model="store.depositAmount" required />
+        <input type="number" id="depositAmount" v-model="store.deposit" required />
       </div>
       <div class="form-group">
         <label for="depositCurrency">Depozito Para Birimi</label>
@@ -65,10 +65,10 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="leasePeriod">Kiralama Süresi</label>
+        <label for="rentalPeriod">Kiralama Süresi</label>
         <input
-          id="leasePeriod"
-          v-model="store.leasePeriod"
+          id="rentalPeriod"
+          v-model="store.rentalPeriod"
           type="text"
           class="form-control"
           placeholder="Örn: 12 ay"
@@ -156,7 +156,6 @@
           type="file"
           accept=".pdf, .doc, .docx, .jpg, .jpeg, .png"
           multiple
-          required
         />
       </div>
       <div class="form-group">
@@ -203,8 +202,8 @@
         />
       </div>
       <div class="form-group">
-        <label for="key">Anahtar</label>
-        <select id="key" v-model="store.key" required>
+        <label for="keyStatus">Anahtar</label>
+        <select id="keyStatus" v-model="store.keyStatus" required>
           <option value="Alındı">Alındı</option>
           <option value="Alınmadı">Alınmadı</option>
           <option value="Kiracıda">Kiracıda</option>
@@ -230,7 +229,7 @@
         <label for="electricBill">Elektrik Borcu TRY</label>
         <input
           id="electricBill"
-          v-model.number="store.electricBill"
+          v-model.number="store.electricityDebt"
           type="number"
           class="form-control"
           required
@@ -240,7 +239,7 @@
         <label for="waterBill">Su Borcu TRY</label>
         <input
           id="waterBill"
-          v-model.number="store.waterBill"
+          v-model.number="store.waterDebt"
           type="number"
           class="form-control"
           required
@@ -250,6 +249,8 @@
         <button type="submit" class="btn btn-primary">Ekle</button>
       </div>
     </form>
+    <button class="fill" @click="store.fill">Doldur</button>
+    <button class="reset" @click="store.reset">Reset</button>
   </div>
 </template>
 
@@ -286,7 +287,27 @@ select {
   border: 1px solid #ccc;
 }
 
-button[type="submit"] {
+.fill {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #29d31a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reset {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #d34e1a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type='submit'] {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -296,7 +317,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background-color: #0069d9;
 }
 </style>
