@@ -74,7 +74,7 @@ export const useAddProjectStore = defineStore({
         waterDebt: this.waterDebt
       }
       const response = await fetch(
-        `https://crm-project-c11ac-default-rtdb.europe-west1.firebasedatabase.app/projects.json`,
+        `https://crm-project-4066f-default-rtdb.europe-west1.firebasedatabase.app/projects.json`,
         {
           method: 'POST',
           body: JSON.stringify(newProject)
