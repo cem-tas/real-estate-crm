@@ -32,7 +32,7 @@ header {
   color: #fff;
   display: flex;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -69,3 +69,4 @@ header {
   background-color: rgba(255, 255, 255, 0.1);
 }
 </style>
+
